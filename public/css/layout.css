@@ -1,0 +1,180 @@
+.navbar-default {
+    background-color: #B40404;
+    border-color: #B40404;
+
+}
+.navbar-default .navbar-nav>li>a {
+    color: #fff;
+}
+.navbar-default .navbar-nav>li>a:hover {
+    color: #fff;
+}
+.navbar {
+    border-radius: 0px;
+    border-bottom: 2px solid #fff;
+}
+.contenido{
+	min-height: 500px;
+}
+.footer{
+	margin-bottom: 50px;
+}
+body{
+	background-image: url("http://www.guallinipropiedades.com/img/fondoRojo3.jpg");
+	font-family: roboto;
+	color: #fff;
+}
+.navbar-brand img{
+	margin : -5px 90px 0px 80px;
+}
+@media only screen and (max-width : 480px) {
+
+	.navbar-brand img{
+		margin : -5px 10px 0px 10px;
+	}
+}
+.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+    background-color: #B40404;
+}
+.navbar-header{
+	min-height: 95px;
+}
+.contentFooter{
+	background-color: #A50402;
+	min-height: 60px;
+}
+.colFooter{
+	padding: 15px;
+}
+.titleFooter{
+	font-weight: bold;
+}
+.textFooter{
+	margin-top: 10px;
+	font-size: 12px;
+}
+.fa-20{
+	font-size: 20px;
+}
+.fa-30{
+	font-size: 30px;
+}
+
+/* --- material floating label --- */
+
+.form-group {
+    display: flex;
+    height: 55px;
+}
+
+.control-label {
+    font-size: 14px;
+    font-weight: 400;
+    opacity: 0.4;
+    pointer-events: none;
+    position: absolute;
+    transform: translate3d(0, 22px, 0) scale(1);
+    transform-origin: left top;
+    transition: 240ms;
+}
+
+.form-group.focused .control-label {
+    opacity: 1;
+    transform: scale(0.75);
+}
+
+.form-control {
+    align-self: flex-end;
+    background-color: transparent;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    box-shadow: 0px 0px;
+    color: #fff;
+    border-radius: 0px;
+}
+.form-control::-webkit-input-placeholder {
+    color: transparent;
+    transition: 240ms;
+}
+
+.form-control:focus::-webkit-input-placeholder {
+    transition: none;
+}
+
+.form-group.focused .form-control::-webkit-input-placeholder {
+    color: #bbb;
+}
+.form-control:focus{
+	box-shadow: 0px 0px;
+	webkit-box-shadow: 0px 0px ;
+
+}
+
+a.list-group-item, button.list-group-item {
+    color: #fff;
+}
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    background-color: transparent;
+    border:0px;
+}
+.badge {
+	background-color: #f5f5f5;
+    color: red;
+}
+.list-group-item:first-child {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+.list-group-item:last-child {
+    margin-bottom: 0;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+.form-control option{
+	color: black;
+	padding: 4px;
+}
+.panel-body.imgPropiedad{
+	padding: 5px 5px;
+}
+.textPropiedad{
+	color: black;
+	font-size: 12px;
+
+}
+.panel-footer.textPropiedad{
+	padding: 7px 7px;
+	text-align: justify;
+}
+.info{
+	font-weight: bold;
+	text-align: right;
+}
+.panel-footer.textPropiedad.row{
+	margin-right: 0px;
+    margin-left: 0px;
+}
+.panel-footer.textPropiedad.row div{
+	padding-right: 0px;
+    padding-left: 0px;
+}
+.divPropiedad{
+	cursor: pointer;
+}
+div .divPropiedad{
+	padding-right: 8px;
+    padding-left: 8px;
+}
+.colMap{
+    height: 250px;
+    width: 100%;
+}
+.close {
+    position: absolute;
+    right: 5px;
+}
