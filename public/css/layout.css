@@ -145,6 +145,7 @@ a.list-group-item, button.list-group-item {
 .textPropiedad{
 	color: black;
 	font-size: 12px;
+    height: 130px;
 
 }
 .panel-footer.textPropiedad{

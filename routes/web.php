@@ -11,9 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+
+Route::resource('/','propiedadesController');
 
 Route::get('maps', function () {
     return view('layouts/maps');
