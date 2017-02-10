@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Propiedad;
 use App\tipoPropiedad;
+use App\imagePropiedades;
+
 
 class propiedadesController extends Controller
 {
-    /**<    
+    /**<
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -17,10 +19,17 @@ class propiedadesController extends Controller
         $propiedades = Propiedad::where('publicar','=',1)->inRandomOrder()->limit(9)->get();
         $propiedad = array();
         foreach ($propiedades as $row) {
-            $image = $row->image->nombre;
-            $row->imagen = $image;
-           
-        } 
+            $image = imagePropiedades::where('id_propiedad','=',$row->id_propiedad)->get();
+            if(count($image) == 0){
+                 $row->imagen = 'no_image.jpg';
+            }
+            else
+            {
+                $image = $image->first();
+                $row->imagen = $image->nombre;
+            }
+
+        }
         return view('index')->with(['propiedades' => $propiedades]);
     }
 

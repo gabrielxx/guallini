@@ -12,8 +12,8 @@
 <script>
   function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 9,
-      center: {lat: -34.6066364, lng: -58.4601297}
+      zoom: 10,
+     center: {lat: -34.3242541, lng: -58.9559645}
     });
   var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   var markers = locations.map(function(location, i) {
