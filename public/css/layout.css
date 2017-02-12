@@ -179,3 +179,16 @@ div .divPropiedad{
     position: absolute;
     right: 5px;
 }
+.text-respuesta{
+    color: black !important;
+}
+.text-pregunta{
+    color: black !important;
+}
+#faq:hover .panel-heading{    
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+#faq:hover a{
+    text-decoration: none;
+}

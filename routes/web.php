@@ -13,6 +13,9 @@
 
 
 Route::resource('/','propiedadesController');
+Route::post('buscarPropiedad','propiedadesController@search');
+
+Route::get('preguntas', 'propiedadesController@preguntas');
 
 Route::get('maps', function () {
     return view('layouts/maps');

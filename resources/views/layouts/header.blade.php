@@ -15,7 +15,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="#">QUIENES SOMOS</a></li>
                 <li><a href="#">PROPIEDADES</a></li>
-                <li><a href="#">PREGUNTAS FRECUENTES (FQA)</a></li>        
+                <li><a href="#" id="preguntas">PREGUNTAS FRECUENTES (FQA)</a></li>        
                 <li><a href="#">CONTACTO</a></li>    
                 <li><a href="#" data-toggle="modal" data-target="#modalMapa">MAPA</a></li>    
             </ul>

@@ -23,7 +23,8 @@
     <link rel="icon" href="{{asset('img/ico.png')}}" type="image/x-icon"/>
     <link rel="shortcut icon" href="{{asset('img/ico.png')}}" type="image/x-icon"/>
     <link rel="stylesheet" type="text/css" href="{{asset('css/layout.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{asset('js/layout.js')}}"/>
+    <script type="text/javascript" src="{{asset('js/propiedades.js')}}"></script>
+
 </head>
 <body>
     <div class="row">
