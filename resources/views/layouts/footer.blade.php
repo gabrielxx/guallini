@@ -27,7 +27,7 @@
 				</a>
 			</div>
 		</div>
-<div class="col-md-4 colFooter">
+<div class="col-md-4 colFooter"  id="contacto" >
 	<div class="col-md-12 titleFooter">
 		CONTACTO
 	</div>
