@@ -192,3 +192,12 @@ div .divPropiedad{
 #faq:hover a{
     text-decoration: none;
 }
+.textBold{
+    font-weight: bold;
+}
+.textBlack{
+    color: black;
+}
+#contentPropiedad{
+    min-height: 400px;
+}

@@ -71,7 +71,23 @@ class propiedadesController extends Controller
      */
     public function show($id)
     {
-        //
+        $tipoPropiedad = tipoPropiedad::all();
+        $barrio = Barrio::all();
+        $tipoOperacion = tipoOperacion::all();
+        $propiedad = Propiedad::find($id);
+        $image = imagePropiedades::where('id_propiedad','=',$id)->get();
+        if(count($image) == 0){
+             $propiedad->imagen = 'no_image.jpg';
+        }
+        else
+        {
+            $image = $image->first();
+            $propiedad->imagen = $image->nombre;
+        }
+        return view('propiedades/propiedad')->with(['propiedad' => $propiedad,
+                                    'tipoPropiedad' => $tipoPropiedad,
+                                    'tipoBarrio' => $barrio,
+                                    'tipoOperacion' => $tipoOperacion]);
     }
 
     /**

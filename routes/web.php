@@ -14,6 +14,7 @@
 
 Route::resource('/','propiedadesController');
 Route::post('buscarPropiedad','propiedadesController@search');
+Route::get('propiedad/{id}','propiedadesController@show');
 
 Route::get('preguntas', 'propiedadesController@preguntas');
 
