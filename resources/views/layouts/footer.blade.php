@@ -27,7 +27,7 @@
 				</a>
 			</div>
 		</div>
-<div class="col-md-4 colFooter">
+<div class="col-md-4 colFooter"  id="contacto" >
 	<div class="col-md-12 titleFooter">
 		CONTACTO
 	</div>
@@ -119,5 +119,6 @@
 		$('.form-control').on('focus blur', function (e) {
 			$(this).parents('.form-group').toggleClass('focused', (e.type === 'focus' || this.value.length > 0));
 		}).trigger('blur');
+		propiedadesJs.init();
 	})
 </script>

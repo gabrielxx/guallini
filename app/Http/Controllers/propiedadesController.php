@@ -5,6 +5,9 @@ use Illuminate\Http\Request;
 use App\Propiedad;
 use App\tipoPropiedad;
 use App\imagePropiedades;
+use App\Barrio;
+use App\tipoOperacion;
+use App\Preguntas;
 
 
 class propiedadesController extends Controller
@@ -16,6 +19,9 @@ class propiedadesController extends Controller
      */
     public function index()
     {
+        $tipoPropiedad = tipoPropiedad::all();
+        $barrio = Barrio::all();
+        $tipoOperacion = tipoOperacion::all();
         $propiedades = Propiedad::where('publicar','=',1)->inRandomOrder()->limit(9)->get();
         $propiedad = array();
         foreach ($propiedades as $row) {
@@ -30,7 +36,10 @@ class propiedadesController extends Controller
             }
 
         }
-        return view('index')->with(['propiedades' => $propiedades]);
+        return view('index')->with(['propiedades' => $propiedades,
+                                    'tipoPropiedad' => $tipoPropiedad,
+                                    'tipoBarrio' => $barrio,
+                                    'tipoOperacion' => $tipoOperacion]);
     }
 
     /**
@@ -62,7 +71,23 @@ class propiedadesController extends Controller
      */
     public function show($id)
     {
-        //
+        $tipoPropiedad = tipoPropiedad::all();
+        $barrio = Barrio::all();
+        $tipoOperacion = tipoOperacion::all();
+        $propiedad = Propiedad::find($id);
+        $image = imagePropiedades::where('id_propiedad','=',$id)->get();
+        if(count($image) == 0){
+             $propiedad->imagen = 'no_image.jpg';
+        }
+        else
+        {
+            $image = $image->first();
+            $propiedad->imagen = $image->nombre;
+        }
+        return view('propiedades/propiedad')->with(['propiedad' => $propiedad,
+                                    'tipoPropiedad' => $tipoPropiedad,
+                                    'tipoBarrio' => $barrio,
+                                    'tipoOperacion' => $tipoOperacion]);
     }
 
     /**
@@ -97,5 +122,42 @@ class propiedadesController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function search(Request $request){
+        $propiedades = Propiedad::where('publicar','=',1)->get();
+        if(isset($request->desde)){
+            $propiedades = $propiedades->where('precio','>=',$request->desde);
+        }
+        if(isset($request->hasta)){
+            $propiedades = $propiedades->where('precio','<=',$request->hasta);
+        }
+        if(isset($request->tipo_operacion) && $request->tipo_operacion != 0){
+            $propiedades = $propiedades->where('id_tipo_operacion','=',$request->tipo_operacion);
+        }
+         if(isset($request->barrio) && $request->barrio != 0){
+            $propiedades = $propiedades->where('id_barrio','=',$request->barrio);
+        }
+         if(isset($request->tipo_propiedad) && $request->tipo_propiedad != 0){
+            $propiedades = $propiedades->where('id_tipo_propiedad','=',$request->tipo_propiedad);
+        }
+
+        $propiedad = array();
+        foreach ($propiedades as $row) {
+            $image = imagePropiedades::where('id_propiedad','=',$row->id_propiedad)->get();
+            if(count($image) == 0){
+                 $row->imagen = 'no_image.jpg';
+            }
+            else
+            {
+                $image = $image->first();
+                $row->imagen = $image->nombre;
+            }
+
+        }
+        return view('propiedades/_contentPropiedades')->with(['propiedades' => $propiedades]);
+    }
+    public function preguntas(){
+        $preguntas = Preguntas::orderBy('id_pregunta','asc')->get();
+        return view('propiedades/_preguntas')->with(['preguntas' => $preguntas]);
     }
 }

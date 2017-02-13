@@ -20,10 +20,15 @@
     <!--Select2 -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+    <!--lightbox-->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.1.1/ekko-lightbox.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.1.1/ekko-lightbox.js"></script>
+
     <link rel="icon" href="{{asset('img/ico.png')}}" type="image/x-icon"/>
     <link rel="shortcut icon" href="{{asset('img/ico.png')}}" type="image/x-icon"/>
     <link rel="stylesheet" type="text/css" href="{{asset('css/layout.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{asset('js/layout.js')}}"/>
+    <script type="text/javascript" src="{{asset('js/propiedades.js')}}"></script>
+
 </head>
 <body>
     <div class="row">
