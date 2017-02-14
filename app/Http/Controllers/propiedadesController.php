@@ -8,6 +8,8 @@ use App\imagePropiedades;
 use App\Barrio;
 use App\tipoOperacion;
 use App\Preguntas;
+use App\Latitud;
+use DB;
 
 
 class propiedadesController extends Controller
@@ -24,6 +26,7 @@ class propiedadesController extends Controller
         $tipoOperacion = tipoOperacion::all();
         $propiedades = Propiedad::where('publicar','=',1)->inRandomOrder()->limit(9)->get();
         $propiedad = array();
+        $localidades = $this->getLocalidades();
         foreach ($propiedades as $row) {
             $image = imagePropiedades::where('id_propiedad','=',$row->id_propiedad)->get();
             if(count($image) == 0){
@@ -39,7 +42,8 @@ class propiedadesController extends Controller
         return view('index')->with(['propiedades' => $propiedades,
                                     'tipoPropiedad' => $tipoPropiedad,
                                     'tipoBarrio' => $barrio,
-                                    'tipoOperacion' => $tipoOperacion]);
+                                    'tipoOperacion' => $tipoOperacion,
+                                    'localidades' => $localidades]);
     }
 
     /**
@@ -75,6 +79,7 @@ class propiedadesController extends Controller
         $barrio = Barrio::all();
         $tipoOperacion = tipoOperacion::all();
         $propiedad = Propiedad::find($id);
+        $localidades = $this->getLocalidades();
         $image = imagePropiedades::where('id_propiedad','=',$id)->get();
         if(count($image) == 0){
              $propiedad->imagen = 'no_image.jpg';
@@ -87,6 +92,7 @@ class propiedadesController extends Controller
         return view('propiedades/propiedad')->with(['propiedad' => $propiedad,
                                     'tipoPropiedad' => $tipoPropiedad,
                                     'tipoBarrio' => $barrio,
+                                    'localidades' => $localidades,
                                     'tipoOperacion' => $tipoOperacion]);
     }
 
@@ -123,6 +129,7 @@ class propiedadesController extends Controller
     {
         //
     }
+
     public function search(Request $request){
         $propiedades = Propiedad::where('publicar','=',1)->get();
         if(isset($request->desde)){
@@ -134,11 +141,14 @@ class propiedadesController extends Controller
         if(isset($request->tipo_operacion) && $request->tipo_operacion != 0){
             $propiedades = $propiedades->where('id_tipo_operacion','=',$request->tipo_operacion);
         }
-         if(isset($request->barrio) && $request->barrio != 0){
+        if(isset($request->barrio) && $request->barrio != 0){
             $propiedades = $propiedades->where('id_barrio','=',$request->barrio);
         }
-         if(isset($request->tipo_propiedad) && $request->tipo_propiedad != 0){
+        if(isset($request->tipo_propiedad) && $request->tipo_propiedad != 0){
             $propiedades = $propiedades->where('id_tipo_propiedad','=',$request->tipo_propiedad);
+        }
+        if(isset($request->localidad)){
+            $propiedades = $propiedades->where('id_localidad','=',$request->localidad);
         }
 
         $propiedad = array();
@@ -159,5 +169,29 @@ class propiedadesController extends Controller
     public function preguntas(){
         $preguntas = Preguntas::orderBy('id_pregunta','asc')->get();
         return view('propiedades/_preguntas')->with(['preguntas' => $preguntas]);
+    }
+
+    public function getLocalidades(){
+        $barrio = DB::table('localidad')
+                    ->join('propiedad','localidad.id_localidad','=','propiedad.id_localidad')
+                    ->where('publicar','=',1)
+                    ->select('localidad.nombre','localidad.id_localidad',DB::raw('count(*) as total'))
+                    ->groupBy('localidad.nombre','localidad.id_localidad')
+                    ->get();
+        return $barrio;
+    }
+
+    public function map(){
+        $map = Latitud::all();        
+        return view('layouts/maps')->with(['map' => $map]);
+    }
+
+    public function map2(){
+        $map = Latitud::all();        
+        return view('layouts/maps2')->with(['map' => $map]);
+    }
+
+    public function empresa(){
+        return view('propiedades/_empresa');
     }
 }

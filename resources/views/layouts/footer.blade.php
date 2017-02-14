@@ -5,26 +5,12 @@
 				PROPIEDADES
 			</div>
 			<div class="col-md-11 list-group">
-				<a href="#" class="list-group-item">
-					<span>Beccar</span>
-					<span class="badge">15</span>
-				</a>
-				<a href="#" class="list-group-item">
-					<span>Olivos</span>
-					<span class="badge">80</span>
-				</a>
-				<a href="#" class="list-group-item">
-					<span>San Fernando</span>
-					<span class="badge">10</span>
-				</a>
-				<a href="#" class="list-group-item">
-					<span>Tigre</span>
-					<span class="badge">8</span>
-				</a>
-				<a href="#" class="list-group-item">
-					<span>Virreyes</span>
-					<span class="badge">23</span>
-				</a>
+				@foreach($localidades as $row)
+					<a href="#" class="list-group-item localidades" attr-id="{{$row->id_localidad}}">
+						<span>{{$row->nombre}}</span>
+						<span class="badge">{{$row->total}}</span>
+					</a>				
+				@endforeach
 			</div>
 		</div>
 <div class="col-md-4 colFooter"  id="contacto" >
@@ -92,16 +78,16 @@
 		<div class="col-md-12 textFooter">
 			info@guallinipropiedades.com<br>
 			<a href="http://facebook.com/guallinipropiedades">
-				<img src="https://img.clipartfest.com/173aea471f8f1d8e5ca136466647f06f_0b7753270e697519ee9e295288925d-facebook-clipart-transparent-background_1000-1000.png" width="30px">
+				<img src="{{asset('img/facebook.png')}}" width="30px">
 			</a>
 			<a href="http://twitter.com/@gualliniprop">
-				<img src="http://www.freeiconspng.com/uploads/twitter-icon-9.png"  width="34px">
+				<img src="{{asset('img/twitter.png')}}"  width="34px">
 			</a>
 			<a href="#">
-				<img src="http://www.noidentity.es/images/2w6i53d.png" width="34px">
+				<img src="{{asset('img/instagram.png')}}" width="34px">
 			</a>
 			<a href="#">
-				<img src="http://www.freeiconspng.com/uploads/rss-feed-icon-png-22.png" width="30px">
+				<img src="{{asset('img/rss-feed.png')}}" width="30px">
 			</a>
 
 		</div>

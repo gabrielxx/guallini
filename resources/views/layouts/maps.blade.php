@@ -26,8 +26,12 @@
     {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
 }
 var locations = [
-{lat: -34.5976139, lng: -58.4656136},
-{lat: -34.6131113, lng: -58.5075336}
+@foreach($map as $row)
+<?php
+$lat = explode(',', $row->latitud);
+?>
+{lat: {{$lat[0]}}, lng: {{$lat[1]}}},
+@endforeach
 ]
 </script>
 <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
