@@ -177,6 +177,7 @@ class propiedadesController extends Controller
                     ->where('publicar','=',1)
                     ->select('localidad.nombre','localidad.id_localidad',DB::raw('count(*) as total'))
                     ->groupBy('localidad.nombre','localidad.id_localidad')
+                    ->orderBy('total','desc')
                     ->get();
         return $barrio;
     }
