@@ -201,3 +201,14 @@ div .divPropiedad{
 #contentPropiedad{
     min-height: 400px;
 }
+.list-group-item {
+    padding: 8px 15px !important;
+}
+.noMargin{
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+}
+.noPadding{
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+}

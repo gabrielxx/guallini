@@ -17,10 +17,9 @@
                     <div class="row textBlack" id="contentPropiedad">
                         <div class="row">                        
                             <div class="col-md-6 text-center">                                
-                            <a href="{{asset('img/img_propiedades/'.$propiedad->imagen)}}" data-toggle="lightbox" data-gallery="example-gallery" class="col-md-12">
-                                    <img src="{{asset('img/img_propiedades/'.$propiedad->imagen)}}" class="img-fluid" height="200px" width="90%">
-                                </a>
+                            <a href="{{asset('img/img_propiedades/'.$propiedad->imagen)}}" data-lightbox="roadtrip"><img src="{{asset('img/img_propiedades/'.$propiedad->imagen)}}" class="img-fluid" height="200px" width="90%"></a>
                             </div>
+
 
                             <div class="col-md-6">
                                 <span class="textBold">Operación: </span><br>
@@ -54,23 +53,12 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    $(document).ready(function ($) {
-// delegate calls to data-toggle="lightbox"
-$(document).on('click', '[data-toggle="lightbox"]:not([data-gallery="navigateTo"])', function(event) {
-    event.preventDefault();
-    return $(this).ekkoLightbox({
-        onShown: function() {
-            if (window.console) {
-                return console.log('Checking our the events huh?');
-            }
-        },
-        onNavigate: function(direction, itemIndex) {
-            if (window.console) {
-                return console.log('Navigating '+direction+'. Current item: '+itemIndex);
-            }
-        }
-    });
-});
+<script>
+    lightbox.option({
+      'resizeDuration': 200,
+      'wrapAround': true,
+      'maxWidth' : 900,
+      'maxHeight' : 500   
+    })
 </script>
 @endsection

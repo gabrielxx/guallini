@@ -13,7 +13,7 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="#">QUIENES SOMOS</a></li>
+                <li><a href="#" id="empresa">QUIENES SOMOS</a></li>
                 <li><a href="#">PROPIEDADES</a></li>
                 <li><a href="#" id="preguntas">PREGUNTAS FRECUENTES (FQA)</a></li>        
                 <li><a href="#contacto">CONTACTO</a></li>    

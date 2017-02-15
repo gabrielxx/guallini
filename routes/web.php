@@ -15,12 +15,9 @@
 Route::resource('/','propiedadesController');
 Route::post('buscarPropiedad','propiedadesController@search');
 Route::get('propiedad/{id}','propiedadesController@show');
+Route::get('barrio','propiedadesController@showBarrio');
+Route::get('preguntas','propiedadesController@preguntas');
+Route::get('maps','propiedadesController@map');
+Route::get('maps2','propiedadesController@map2');
+Route::get('empresa','propiedadesController@empresa');
 
-Route::get('preguntas', 'propiedadesController@preguntas');
-
-Route::get('maps', function () {
-    return view('layouts/maps');
-});
-Route::get('maps2', function () {
-    return view('layouts/maps2');
-});
