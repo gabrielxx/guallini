@@ -105,6 +105,11 @@
 		$('.form-control').on('focus blur', function (e) {
 			$(this).parents('.form-group').toggleClass('focused', (e.type === 'focus' || this.value.length > 0));
 		}).trigger('blur');
-		propiedadesJs.init();
+
+		propiedadesJs.init({
+			urlEmpresa : "{{url('empresa')}}",
+			urlPreguntas: "{{url('preguntas')}}",
+			urlPropiedad: "{{url('buscarPropiedad')}}"
+		});
 	})
 </script>

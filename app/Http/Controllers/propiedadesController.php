@@ -80,6 +80,9 @@ class propiedadesController extends Controller
         $tipoOperacion = tipoOperacion::all();
         $propiedad = Propiedad::find($id);
         $localidades = $this->getLocalidades();
+        $propiedad->tipoOperacion = $tipoOperacion->where('id_tipo_operacion','=',$propiedad->id_tipo_operacion)->first();   
+        $propiedad->localidad = $localidades->where('id_localidad','=',$propiedad->id_localidad)->first();
+        $propiedad->barrio = $barrio->where('id_barrio','=',$propiedad->id_barrio)->first();
         $image = imagePropiedades::where('id_propiedad','=',$id)->get();
         if(count($image) == 0){
              $propiedad->imagen = 'no_image.jpg';
@@ -183,12 +186,20 @@ class propiedadesController extends Controller
     }
 
     public function map(){
-        $map = Latitud::all();        
+        $map = DB::table('propiedad')
+                        ->join('latitud','propiedad.id_propiedad','=','latitud.id_propiedad')
+                        ->where('propiedad.publicar','=',1)
+                        ->select('latitud.*')
+                        ->get();      
         return view('layouts/maps')->with(['map' => $map]);
     }
 
     public function map2(){
-        $map = Latitud::all();        
+        $map = DB::table('propiedad')
+                        ->join('latitud','propiedad.id_propiedad','=','latitud.id_propiedad')
+                        ->where('propiedad.publicar','=',1)
+                        ->select('latitud.*')
+                        ->get();
         return view('layouts/maps2')->with(['map' => $map]);
     }
 
