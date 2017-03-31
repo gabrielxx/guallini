@@ -6,18 +6,8 @@
             @include('propiedades/buscador')
         </div>
         <div class="col-md-8 col-sm-8">
-            <div class="panel panel-danger">
-                <div class="panel-heading">
-                    <h1 class="panel-title">
-                        <i class="fa fa-building fa-20" aria-hidden="true"></i>
-                        Propiedades
-                    </h1>
-                </div>
-                <div class="panel-body" >
-                    <div class="row" id="contentPropiedad">
-                        @include('propiedades/_contentPropiedades')                        
-                    </div>
-                </div>
+            <div class="panel panel-danger" id="panelRender">            
+                @include('propiedades/_contentPropiedades')                        
             </div>
         </div>
     </div>

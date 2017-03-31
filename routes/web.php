@@ -21,3 +21,23 @@ Route::get('maps','propiedadesController@map');
 Route::get('maps2','propiedadesController@map2');
 Route::get('empresa','propiedadesController@empresa');
 
+Route::get('admin','userController@login');
+Route::post('admin/iniciar_sesion','userController@validarUsuario');
+Route::get('admin/listPropiedades','propiedadesController@listPropiedades');
+
+Auth::routes();
+
+Route::get('/admin', 'HomeController@index');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
+Route::group(['middleware' => ['auth']], function(){
+
+	Route::get('propiedades','propiedadesController@listPropiedades');
+
+});

@@ -1,0 +1,75 @@
+body{
+	background-image: url("http://www.guallinipropiedades.com/img/fondoRojo3.jpg");
+	font-family: roboto;
+	color: #fff;
+}
+
+.mr-top{
+	margin-top: 100px;
+	margin-bottom: 100px;
+}
+
+.form-group {
+    display: flex;
+    height: 55px;
+}
+
+.control-label {
+    font-size: 14px;
+    font-weight: 400;
+    opacity: 0.4;
+    pointer-events: none;
+    position: absolute;
+    transform: translate3d(0, 22px, 0) scale(1);
+    transform-origin: left top;
+    transition: 240ms;
+}
+
+.form-group.focused .control-label {
+    opacity: 1;
+    transform: scale(0.75);
+}
+
+.form-control {
+    align-self: flex-end;
+    background-color: transparent;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    box-shadow: 0px 0px;
+    color: #fff;
+    border-radius: 0px;
+}
+.form-control::-webkit-input-placeholder {
+    color: transparent;
+    transition: 240ms;
+}
+
+.form-control:focus::-webkit-input-placeholder {
+    transition: none;
+}
+
+.form-group.focused .form-control::-webkit-input-placeholder {
+    color: #bbb;
+}
+.form-control:focus{
+	box-shadow: 0px 0px;
+	webkit-box-shadow: 0px 0px ;
+
+}
+
+.password-option{
+	color: #fff;
+	font-size: 11px;
+}
+
+a,a:focus,a:hover{
+	color: #fff;
+	text-decoration: none;
+	font-weight: none;
+	font-size: 11px;
+}
+.contentLogin{
+	padding: 20px;
+	background: rgba(0,0,0,.4); 
+}
