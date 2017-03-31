@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -24,6 +23,7 @@
     <!--lightbox-->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.9.0/css/lightbox.css">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.9.0/js/lightbox.js"></script>
+    
     <link rel="stylesheet" type="text/css" href="{{asset('css/layout.css')}}"/>
     <script type="text/javascript" src="{{asset('js/propiedades.js')}}"></script>
 
@@ -31,7 +31,7 @@
 <body>
     <div class="row">
         <div class="col-md-12">
-            @include('layouts/header')
+            @include('layouts/headerUsuario')
         </div>
     </div>
     <div class="row">
@@ -39,11 +39,6 @@
             @yield('content')
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-12 footer">
-            @include('layouts/footer')
-        </div>
-    </div>
-@include('modals/modalMapa')
 </body>
 </html>
+

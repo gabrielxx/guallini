@@ -45,7 +45,12 @@ class propiedadesController extends Controller
                                     'tipoOperacion' => $tipoOperacion,
                                     'localidades' => $localidades]);
     }
-
+    public function listPropiedades()
+    {        
+        $propiedades = Propiedad::all();
+       
+        return view('propiedades/listPropiedades')->with(['propiedades' => $propiedades]);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -205,5 +210,5 @@ class propiedadesController extends Controller
 
     public function empresa(){
         return view('propiedades/_empresa');
-    }
+    } 
 }

@@ -12,7 +12,7 @@ propiedadesJs = {
 	},
 	buscarPropiedad:function(){
 		$("#buscarPropiedad").click(function(){
-				data = $("#buscador").serialize(); 
+			data = $("#buscador").serialize(); 
 				$.ajax({
 				type: "POST",
 				url: propiedadesJs.urlPropiedad,
