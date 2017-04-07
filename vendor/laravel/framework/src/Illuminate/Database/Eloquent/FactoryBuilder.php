@@ -151,7 +151,7 @@ class FactoryBuilder
     public function raw(array $attributes = [])
     {
         if ($this->amount === null) {
-            return $this->getRawAttributes();
+            return $this->getRawAttributes($attributes);
         }
 
         if ($this->amount < 1) {
@@ -236,6 +236,9 @@ class FactoryBuilder
         foreach ($attributes as &$attribute) {
             $attribute = $attribute instanceof Closure
                             ? $attribute($attributes) : $attribute;
+
+            $attribute = $attribute instanceof Model
+                            ? $attribute->getKey() : $attribute;
         }
 
         return $attributes;
