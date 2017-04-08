@@ -64,6 +64,66 @@ propiedadesJs = {
 			});
 		});
 	},
+	deleteImage:function(url){
+		$(".deleteImage").click(function(){
+			id = $(this).attr("btn-id");
+			swal({
+				title: "",
+				text: "¿Desea eliminar esta imagen?",
+				type: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#DD6B55",
+				confirmButtonText: "Aceptar",
+				cancelButtonText:"Cancelar",
+				closeOnConfirm: false
+			},
+			function(){
+				$.ajax({
+					type: "POST",
+					url: url,
+					data:{
+						_token: $("input[name='_token']").val(),
+						id:id,
+						},
+				}).done(function(data) {
+					$("#img_"+id).remove();
+					swal("Eliminado!", "La imagen de esta propiedad ha sido eliminada exitodamente.", "success");
+				}).fail(function(data) {
+				}).always(function() {				
+				});
+				
+			});
+		});
+	},
+	addImage:function(url,ruta,eliminarRuta){
+		$("#addImage").click(function(){
+			var formData = new FormData();
+			formData.append('image', $("#image")[0].files[0])
+			datos = $("#form").serialize();
+			$.ajax({
+				type: "POST",
+				url: url+'?'+datos,
+			    contentType: false,
+			    processData: false,
+				data:formData
+			}).done(function(data) {
+				$("#image").val('');
+				cont = '<div class="col-md-2 col-sm-3 col-xs-3 text-center" id="img_'+data.id_imagen+'">';
+                cont+= '<span title="Eliminar" class="btn btn-danger deleteImage" btn-id="'+data.id_imagen+'">x</span>';
+                cont+= '<a href="'+ruta+'/'+data.nombre+'" data-lightbox="roadtrip">';
+                cont+= '<img src="'+ruta+'/'+data.nombre+'" class="img-fluid" width="90%" height="100px"></a>';
+                cont+= '</div>';
+				$(".contImage").append(cont);											
+				propiedadesJs.deleteImage(eliminarRuta);
+				swal("Nueva imagen!", "Nueva imagen agregada exitodamente.", "success");
+			}).fail(function(data) {
+				datos = data.responseJSON;
+				swal("Error",datos.image, "error");
+				
+			}).always(function() {				
+			});
+		});		
+	},
 	propiedades:function(){
 		$("#propiedades").click(function(){
 			$.ajax({

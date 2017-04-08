@@ -1,13 +1,3 @@
-.navbar-default {
-    background-color: #B40404 !important;
-    border-color: #B40404 !important;
-}
-.navbar-default .navbar-nav>li>a {
-    color: #fff !important;
-}
-.navbar-default .navbar-nav>li>a, .navbar-default .navbar-text {
-    color: #fff !important;
-}
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);/*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
  * Copyright 2011-2016 Twitter, Inc.

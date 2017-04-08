@@ -8,4 +8,6 @@ class imagePropiedades extends Model
 {
     protected $table = 'imagenes';
     protected $primaryKey = 'id_imagen';
+    public $timestamps = false;
+
 }
