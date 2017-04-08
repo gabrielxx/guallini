@@ -9,7 +9,15 @@ use App\Barrio;
 use App\tipoOperacion;
 use App\Preguntas;
 use App\Latitud;
+use App\Localidad;
+use App\tipoMoneda;
+use App\Provincia;
+use App\Partido;
+use App\Ciudad;
+use App\Zona;
 use DB;
+use File;
+use Storage;
 
 
 class propiedadesController extends Controller
@@ -47,8 +55,12 @@ class propiedadesController extends Controller
     }
     public function listPropiedades()
     {        
-        $propiedades = Propiedad::all();
-       
+        $propiedades = Propiedad::orderBy('publicar','DESC')->get();
+         foreach ($propiedades as $row) {
+            $row->tipoPropiedad = tipoPropiedad::find($row->id_tipo_propiedad); 
+            $row->tipoOperacion = tipoOperacion::find($row->id_tipo_operacion);
+            $row->localidades = Localidad::find($row->id_localidad);
+        }
         return view('propiedades/listPropiedades')->with(['propiedades' => $propiedades]);
     }
     /**
@@ -58,7 +70,26 @@ class propiedadesController extends Controller
      */
     public function create()
     {
-        //
+        $tipoOperacion = tipoOperacion::all();
+        $tipoPropiedad = tipoPropiedad::all();
+        $tipoMoneda = tipoMoneda::all();
+        $Provincia = Provincia::all();
+        $Partido = Partido::all();
+        $Ciudad = Ciudad::all();
+        $Localidad = Localidad::all();
+        $Barrio = Barrio::all();
+        $Zona = Zona::all();
+        return view("propiedades/newPropiedad")->with([
+            'tipoOperacion' => $tipoOperacion, 
+            'tipoPropiedad' => $tipoPropiedad,
+            'tipoMoneda' => $tipoMoneda,
+            'Provincia' => $Provincia,
+            'Partido' => $Partido,
+            'Ciudad' => $Ciudad,
+            'Localidad' => $Localidad,
+            'Barrio' => $Barrio,
+            'Zona' => $Zona,
+            ]);
     }
 
     /**
@@ -69,7 +100,34 @@ class propiedadesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $propiedad = New Propiedad();
+        $propiedad->id_tipo_propiedad = $request->tipo_propiedad;
+        $propiedad->id_tipo_operacion = $request->tipo_operacion;
+        $propiedad->id_tipo_moneda = $request->tipo_moneda;
+        $propiedad->precio = $request->precio;
+        $propiedad->id_provincia = $request->partido;
+        $propiedad->id_partido = $request->provincia;
+        $propiedad->id_ciudad = $request->ciudad;
+        $propiedad->id_localidad = $request->localidad;
+        $propiedad->id_barrio= $request->barrio;
+        $propiedad->id_tipo_zona = $request->zona;
+        $propiedad->calle = $request->calle;
+        $propiedad->nro = $request->numero;
+        $propiedad->cerca = $request->cerca;
+        $propiedad->plantas = $request->planta;
+        $propiedad->estado = $request->estado;
+        $propiedad->dormitorio = $request->dormitorios;
+        $propiedad->dormitorios = $request->dormitorios;
+        $propiedad->antiguedad = $request->antiguedad;
+        $propiedad->sup_cubierta = $request->sup_cubierta;
+        $propiedad->sup_descubierta = $request->sup_descubierta;
+        $propiedad->sup_total = $request->sup_cubierta + $request->sup_descubierta;
+        $propiedad->frente_medida = $request->medida_frente;
+        $propiedad->banio = $request->banios;
+        $propiedad->descripcion = $request->descripcion;
+        $propiedad->publicar = 1;     
+        $propiedad->save();
+        return redirect('admin/listPropiedades');
     }
 
     /**
@@ -112,7 +170,30 @@ class propiedadesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Propiedad::find($id);
+        $imagen = imagePropiedades::where('id_propiedad','=',$id)->get();
+        $tipoOperacion = tipoOperacion::all();
+        $tipoPropiedad = tipoPropiedad::all();
+        $tipoMoneda = tipoMoneda::all();
+        $Provincia = Provincia::all();
+        $Partido = Partido::all();
+        $Ciudad = Ciudad::all();
+        $Localidad = Localidad::all();
+        $Barrio = Barrio::all();
+        $Zona = Zona::all();
+        return view("propiedades/editarPropiedad")->with([
+            'data' => $data,
+            'imagen' => $imagen,
+            'tipoOperacion' => $tipoOperacion, 
+            'tipoPropiedad' => $tipoPropiedad,
+            'tipoMoneda' => $tipoMoneda,
+            'Provincia' => $Provincia,
+            'Partido' => $Partido,
+            'Ciudad' => $Ciudad,
+            'Localidad' => $Localidad,
+            'Barrio' => $Barrio,
+            'Zona' => $Zona,
+            ]);
     }
 
     /**
@@ -122,9 +203,36 @@ class propiedadesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $propiedad = Propiedad::find($request->id);
+        $propiedad->id_tipo_propiedad = $request->tipo_propiedad;
+        $propiedad->id_tipo_operacion = $request->tipo_operacion;
+        $propiedad->id_tipo_moneda = $request->tipo_moneda;
+        $propiedad->precio = $request->precio;
+        $propiedad->id_provincia = $request->partido;
+        $propiedad->id_partido = $request->provincia;
+        $propiedad->id_ciudad = $request->ciudad;
+        $propiedad->id_localidad = $request->localidad;
+        $propiedad->id_barrio= $request->barrio;
+        $propiedad->id_tipo_zona = $request->zona;
+        $propiedad->calle = $request->calle;
+        $propiedad->nro = $request->numero;
+        $propiedad->cerca = $request->cerca;
+        $propiedad->plantas = $request->planta;
+        $propiedad->estado = $request->estado;
+        $propiedad->dormitorio = $request->dormitorios;
+        $propiedad->dormitorios = $request->dormitorios;
+        $propiedad->antiguedad = $request->antiguedad;
+        $propiedad->sup_cubierta = $request->sup_cubierta;
+        $propiedad->sup_descubierta = $request->sup_descubierta;
+        $propiedad->sup_total = $request->sup_cubierta + $request->sup_descubierta;
+        $propiedad->frente_medida = $request->medida_frente;
+        $propiedad->banio = $request->banios;
+        $propiedad->descripcion = $request->descripcion;
+        $propiedad->publicar = 1;     
+        $propiedad->save();   
+        return redirect('admin/listPropiedades');
     }
 
     /**
@@ -211,4 +319,25 @@ class propiedadesController extends Controller
     public function empresa(){
         return view('propiedades/_empresa');
     } 
+
+    public function deleteImage(Request $request){
+        $img = imagePropiedades::find($request->id);
+        $eliminar = Storage::delete('img_propiedades/'.$img->nombre);
+        $img->delete();
+    }
+
+    public function addImage(Request $request){
+        $this->validate($request,[
+                'image' => 'required|image'
+            ]);
+        
+        $path = Storage::putFile('img_propiedades', $request->file('image'));
+        $imagen = explode("img_propiedades/", $path);
+        $image = New imagePropiedades();
+        $image->id_propiedad = 113;
+        $image->id_tipo_imagen = 3;
+        $image->nombre = $imagen[1];
+        $image->save();
+        return $image;
+    }
 }

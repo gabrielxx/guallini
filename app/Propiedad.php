@@ -8,6 +8,7 @@ class Propiedad extends Model
 {
     protected $table = 'propiedad';
     protected $primaryKey = 'id_propiedad';
+    public $timestamps = false;
     
     public function tipo_propiedad(){
     	return $this->hasOne('App\tipoPropiedad','id_tipo_propiedad','id_tipo_propiedad');

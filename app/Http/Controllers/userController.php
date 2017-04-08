@@ -13,8 +13,9 @@ class userController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    {   
+        $usuarios = User::all();
+        return view('usuario')->with(['usuarios' => $usuarios]);
     }
 
     /**
@@ -81,5 +82,8 @@ class userController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function register(){
+        return view('auth/register');
     }
 }

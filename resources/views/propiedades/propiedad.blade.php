@@ -29,7 +29,7 @@
                                 <span class="textBold">Barrio: </span>{{$propiedad->barrio->nombre}}<br>
                                 <span class="textBold">Localidad: </span>{{$propiedad->localidad->nombre}}<br>
                             </div>
-                        </div>
+                        </div>                    
                             <br>
                             @if(isset($propiedad->living))
                             <div class="col-md-4">
